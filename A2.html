@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>A2 CS 155 - Matthew Muthler</title>
+  <style>
+    img { width: 100px; }
+  </style>
+</head>
+<body>
+  <p id="total"></p>
+  <img id="dicePic1" src="dicepix/1dice.jpg" alt="Die 1">
+  <img id="dicePic2" src="dicepix/1dice.jpg" alt="Die 2">
+  <h1 id="win"></h1>
+  <p id="lose"></p>
+
+  <script>
+    /*
+      Author: Matthew Muthler
+      Goal: Roll dice, dynamically display pictures and use decisions and looping.
+    */
+    (function() {
+      const diceImgs = [
+        'dicepix/1dice.jpg',
+        'dicepix/2dice.jpg',
+        'dicepix/3dice.jpg',
+        'dicepix/4dice.jpg',
+        'dicepix/5dice.jpg',
+        'dicepix/6dice.jpg'
+      ];
+
+      // Roll two dice
+      const roll1 = rollDie();
+      const roll2 = rollDie();
+
+      // Update images
+      document.getElementById('dicePic1').src = diceImgs[roll1 - 1];
+      document.getElementById('dicePic2').src = diceImgs[roll2 - 1];
+
+      // Display result text
+      const total = roll1 + roll2;
+      document.getElementById('total').textContent = `You rolled a ${roll1} and a ${roll2}`;
+
+      if (total === 7) {
+        document.getElementById('win').textContent = `${total} Winner`;
+      } else {
+        document.getElementById('lose').textContent = (total.toString() + ' ').repeat(total);
+      }
+
+      function rollDie() {
+        return Math.floor(Math.random() * 6) + 1;
+      }
+    })();
+  </script>
+</body>
+</html>
